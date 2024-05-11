@@ -1,46 +1,12 @@
 import { pool } from "../database/connection.js"
-import { bancoSolarModel } from "./bancosolar.model.js"
+
 
 const findAll = async () => {
     const { rows } = await pool.query("SELECT * FROM TRANSFER")
     return rows
 }
 
-// const create = async (origen, destino, valor) => {
-//     try {
-//       await pool.query("BEGIN");
-  
-//       const user1 = await bancoSolarModel.updateSaldo(origen, -valor);
-//       if (!user1) throw new Error("Error al actualizar el saldo del origen");
-  
-//       const user2 = await bancoSolarModel.updateSaldo(destino, valor);
-//       if (!user2) throw new Error("Error al actualizar el saldo del destino");
-  
-//       const query = {
-//         text: "INSERT INTO TRANSFER (ORIGEN, DESTINO, VALOR) VALUES ($1, $2, $3) RETURNING *",
-//         values: [origen, destino, valor],
-//       };
-  
-//       const { rows } = await pool.query(query);
-  
-//       await pool.query("COMMIT");
-//       return {
-//         ok: true,
-//         data: rows[0],
-//       };
-//     } catch (error) {
-//       console.error(error);
-  
-//       // Rollback de la transacción en caso de error
-//       await pool.query("ROLLBACK");
-  
-//       return {
-//         ok: false,
-//         error: error.message || "Error en la transferencia",
-//       };
-//     }
-//   };
-  
+
 const create = async (cuentaOrigen, cuentaDestino, monto) => {
     try {
         const fecha = new Date(); // Obtener la fecha y hora actuales
