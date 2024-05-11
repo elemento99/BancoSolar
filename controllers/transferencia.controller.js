@@ -8,7 +8,10 @@ const transferAll = async (req, res) => {
 const transferMont = async (req, res) => {
     try {
         const { origen, destino, valor } = req.body;
-        const response = await Transfer.create(origen, destino, valor);
+        const fecha = new Date(); // Obtener la fecha y hora actuales
+
+        // Llamar a la función create del modelo Transfer con la fecha actual
+        const response = await Transfer.create(origen, destino, valor, fecha);
 
         if (!response.ok) {
             // Si la creación falla, responde con un estado 500 y la respuesta del error
@@ -22,7 +25,7 @@ const transferMont = async (req, res) => {
         console.error("Error al crear la transferencia:", error);
         return res.status(500).json({ message: "Error interno del servidor" });
     }
-}
+};
 
 
 export const transferencia = {
