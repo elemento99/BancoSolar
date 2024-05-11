@@ -4,7 +4,7 @@ const bancoUsuarios = async () => {
     const { rows } = await pool.query("SELECT * FROM usuarios LIMIT 10")
     return rows
 }
-//aquí parametrizamos para que no nos inyecten info que no va
+
 const encontrarId = async (id) => {
     const query = {
         text: "SELECT * FROM USUARIOS WHERE id = $1",

@@ -222,9 +222,7 @@
 
   $("form:last").submit(async (e) => {
     e.preventDefault();
-    // let emisor = $("form:last select:first").val();
-    // let receptor = $("form:last select:last").val();
-    // let monto = $("#monto").val();
+
 
     let emisor = parseInt($("form:last select:first").val());
   let receptor = parseInt($("form:last select:last").val());
@@ -310,7 +308,7 @@
     });
   } catch (error) {
     console.error("Error al obtener las transferencias:", error);
-    // Aquí puedes agregar código para manejar el error, como mostrar un mensaje al usuario
+
   }
 };
 

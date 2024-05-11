@@ -9,7 +9,7 @@ const findAll = async () => {
 
 const create = async (cuentaOrigen, cuentaDestino, monto) => {
     try {
-        const fecha = new Date(); // Obtener la fecha y hora actuales
+        const fecha = new Date(); 
 
         await pool.query('BEGIN');
 

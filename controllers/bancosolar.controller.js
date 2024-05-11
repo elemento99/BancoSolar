@@ -1,5 +1,3 @@
-//cobtrolador gestiona
-
 import { bancoSolarModel } from "../models/bancosolar.model.js"
 
 
@@ -30,18 +28,18 @@ const unicoUsuario = async (req, res) => {
 const registrarUsuario = async (req, res ) => {
     try {
         const { id,nombre, balance } = req.body
-        //validaciones rut, nombre, curso y nivel
+
         const nuevoUsuario = { id,nombre, balance }
         const usuarioLista = await bancoSolarModel.ingresar(nuevoUsuario)
         return res.status(201).json(usuarioLista)
     }catch (error) {
         console.log(error)
-        // if (error.code === '23505') {
-        //     return res.status(400).json({ ok: false, msg: "El usuario ya está registrado" })
-        // }
-        // if (error.code === '23502') {
-        //     return res.status(400).json({ ok: false, msg: "Debe ingresar el rut" })
-        // }
+        if (error.code === '23505') {
+            return res.status(400).json({ ok: false, msg: "El usuario ya está registrado" })
+        }
+        if (error.code === '23502') {
+            return res.status(400).json({ ok: false, msg: "Debe ingresar el rut" })
+        }
 
         return res.status(500).json( { ok: false})
     }
